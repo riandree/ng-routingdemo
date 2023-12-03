@@ -1,0 +1,33 @@
+<h2>This is the parent component for Feature-A.</h2>
+
+<div class="nav-group">
+    <!-- relative routes (like 'first' and 'second') are resolved relative to the current (i.e. here this) component -->
+    <a class="nav-btn" routerLinkActive="nav-active" routerLink="first"><span>1st</span></a>
+    <a class="nav-btn" routerLinkActive="nav-active" routerLink="second"><span>2nd (2 seconds latency through dynamic "resolver")</span></a>
+</div>
+
+<div>
+    <label for="auth">User is authenticated</label>
+    <input id="auth" type="checkbox" [checked]="userAuthenticated" (click)="toggleAuth()">
+    <p>
+        <a class="nav-btn" routerLinkActive="nav-active" routerLink="secure"><span>Secured (user has to be "authenticated")</span></a>
+    </p>
+</div>
+
+
+@if (subComponentActive) {
+    <p>Nested router-outlet is below.</p>
+    <hr>
+    
+    <router-outlet></router-outlet>
+} @else {
+    <p>No subcomponent was chosen.</p>
+}
+<hr>
+
+<h5>Events</h5>
+<ol style="height: 25vh;overflow-y: auto; overflow-x: hidden;">
+    @for (event of routingEvents; track event) { 
+        <li>{{ event }}</li>
+    }
+</ol>
